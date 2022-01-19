@@ -17,6 +17,7 @@ const Filter = ({ value, onChange }) => {
     </label>
   );
 };
+
 const mapStateToProps = state => ({
   value: state.users.filter,
 });

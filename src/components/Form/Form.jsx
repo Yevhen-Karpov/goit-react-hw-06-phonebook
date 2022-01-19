@@ -27,10 +27,12 @@ const Form = ({ onSubmit }) => {
     onSubmit(name, number);
     reset();
   };
+
   const reset = () => {
     setName('');
     setNumber('');
   };
+
   return (
     <div>
       <form className={s.form} onSubmit={handleAddContact}>
@@ -69,6 +71,7 @@ const Form = ({ onSubmit }) => {
     </div>
   );
 };
+
 const mapDispatchToProps = dispatch => ({
   onSubmit: (name, number) =>
     dispatch(contactsActions.addContact(name, number)),
