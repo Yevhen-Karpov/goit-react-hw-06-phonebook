@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-// import { useDispatch } from 'react-redux';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import contactsActions from '../../redux/actions';
+import { getContacts } from '../../redux/selector';
 import s from './Form.module.css';
 
 const Form = ({ onSubmit }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  // const dispatch = useDispatch();
-
+  const contacts = useSelector(getContacts);
   const handleNameChange = e => {
     setName(e.currentTarget.value);
   };
@@ -19,12 +18,18 @@ const Form = ({ onSubmit }) => {
 
   const handleAddContact = e => {
     e.preventDefault();
-    // dispatch(contactsActions.addContact(name, number));
+    if (contacts.find(contact => contact.name === name)) {
+      alert(`${name} is already in contacts.`);
+      reset();
+      return;
+    }
     onSubmit(name, number);
+    reset();
+  };
+  const reset = () => {
     setName('');
     setNumber('');
   };
-
   return (
     <div>
       <form className={s.form} onSubmit={handleAddContact}>
