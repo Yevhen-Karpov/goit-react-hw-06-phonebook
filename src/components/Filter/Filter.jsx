@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import contactsActions from '../../redux/actions';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import s from './Filter.module.css';
 
 const Filter = ({ value, onChange }) => {
@@ -26,7 +26,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);
-// Filter.propTypes = {
-//   value: PropTypes.string.isRequired,
-//   onChange: PropTypes.func.isRequired,
-// };
+
+Filter.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};

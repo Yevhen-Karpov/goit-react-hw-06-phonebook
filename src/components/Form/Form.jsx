@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect, useSelector } from 'react-redux';
 import contactsActions from '../../redux/actions';
 import { getContacts } from '../../redux/selector';
@@ -73,3 +74,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(contactsActions.addContact(name, number)),
 });
 export default connect(null, mapDispatchToProps)(Form);
+
+Form.propTypes = {
+  onSubmit: PropTypes.func,
+};

@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import contactsActions from '../../redux/actions';
-// import PropTypes from 'prop-types';
 import s from './ContactList.module.css';
 
 const ContactList = ({ contacts, onDeleteContact }) => {
@@ -24,13 +24,10 @@ const ContactList = ({ contacts, onDeleteContact }) => {
     </ul>
   );
 };
-// const getVisibleContacts = () => {
 
-//   return
-//   );
-// };
 const mapStateToProps = state => {
   const { filter, contacts } = state.users;
+
   const normalizedFilter = filter.toLowerCase();
 
   const getVisibleContacts = contacts.filter(contact =>
@@ -46,13 +43,7 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
 
-// ContactList.propTypes = {
-//   onDeleteContact: PropTypes.func.isRequired,
-//   contacts: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.string.isRequired,
-//       name: PropTypes.string.isRequired,
-//       number: PropTypes.string.isRequired,
-//     }),
-//   ),
-// };
+ContactList.propTypes = {
+  contacts: PropTypes.array,
+  onDeleteContact: PropTypes.func,
+};
